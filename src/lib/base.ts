@@ -3,7 +3,7 @@ import { AxiosInstance, AxiosError } from "axios";
 export class Base {
   constructor(protected readonly axios: AxiosInstance) {}
 
-  async sendRequest(path: string, data: any): Promise<any> {
+  protected async sendRequest(path: string, data: any): Promise<any> {
     try {
       const response = await this.axios.post(`${path}`, data);
       const result = response.data;
@@ -18,7 +18,7 @@ export class Base {
     }
   }
 
-  async fetchRequest(path: string): Promise<any> {
+  protected async fetchRequest(path: string): Promise<any> {
     try {
       const response = await this.axios.get(`${path}`);
       const result = response.data;
