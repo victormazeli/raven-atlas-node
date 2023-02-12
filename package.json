@@ -1,6 +1,6 @@
 {
   "name": "raven-atlas-node",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "raven atlas node libary",
   "main": "dist/index.js",
   "scripts": {
