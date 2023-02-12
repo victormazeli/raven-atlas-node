@@ -2,9 +2,7 @@
 
 A Nodejs libary for working with raven atlas, for imformation take a look at raven atlas docs [click here](https://raven-atlas.readme.io)
 
-
 ## Getting Started
-
 #
 To start using this libary, signup on [raven atlas](https://dash.readme.com/to/raven-atlas/signup) to get an API key
 
@@ -41,12 +39,14 @@ try {
     }
 
 ```
+#
 ### Available Classes
 
 1. Bill
 2. Miscellenous
 3. Collection
 4. Transfer
+#
 ### Todos                                                                                                                                                 
 
 1. Cards
