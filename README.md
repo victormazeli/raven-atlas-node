@@ -26,12 +26,24 @@ import { RavenAtlas } from "raven-atlas-node";
 const atlas = new RavenAtlas({apiKey: "YOUR_API_KEY"});
 
 ```
-
+### Miscellaneous 
 ```
 const misc = atlas.misc
 try {
     const checkAccount = await misc.accountNumberLookUp({accountNumber: "3028422066", bank: "076"})
         return checkAccount; // response
+    } catch (error) {
+        console.log(error)
+        // handle error
+    }
+
+```
+### Bills 
+```
+const bill = atlas.bill
+try {
+    const buyAirtime = await bill.purchaseAirtime({amount:"100", merchantReference:"12345", phoneNumber:"08102516540"})
+        return buyAirtime; // response
     } catch (error) {
         console.log(error)
         // handle error
