@@ -14,7 +14,7 @@ export class Base {
       return result.message;
     } catch (error) {
       const err = error as AxiosError;
-      return err.response ? err.response.data : "An error occurred";
+      throw err.response ? err.response.data : "An error occurred";
     }
   }
 
@@ -29,7 +29,7 @@ export class Base {
       return result.message;
     } catch (error) {
       const err = error as AxiosError;
-      return err.response ? err.response.data : "An error occurred";
+      throw err.response ? err.response.data : "An error occurred";
     }
   }
 }
