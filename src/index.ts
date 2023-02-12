@@ -4,7 +4,7 @@ import { Collection } from "./lib/collections";
 import { Miscellaneous } from "./lib/misc";
 import { Transfer } from "./lib/transfers";
 
-export class RavenAtlas {
+export default class RavenAtlas {
   public url: string = "https://integrations.getravenbank.com";
   public bill: Bill;
   public card: string | undefined;
