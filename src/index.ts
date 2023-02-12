@@ -1,4 +1,4 @@
-import Axios from "axios";
+import { customAxios } from "./utils/custom-axios";
 import { Bill } from "./lib/bills";
 import { Collection } from "./lib/collections";
 import { Miscellaneous } from "./lib/misc";
@@ -17,19 +17,14 @@ export class RavenAtlas {
   private apiKey: string | undefined;
 
   constructor(options: { apiKey: string; version?: string }) {
-    this.apiKey = this.apiKey;
+    this.apiKey = options.apiKey;
     if (typeof options.version === "undefined" || options.version === "") {
       this.version = "v1";
     } else {
       this.version = options.version;
     }
-    const axios = Axios.create({
-      baseURL: this.url + `/${this.version}`,
-      headers: {
-        Authorization: `Bearer ${options.apiKey}`,
-        Accept: "application/json",
-      },
-    });
+
+    const axios = customAxios(this.url, this.apiKey, this.version);
 
     this.bill = new Bill(axios);
     this.collection = new Collection(axios);
