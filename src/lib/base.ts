@@ -9,7 +9,7 @@ export class Base {
       const result = response.data;
 
       if (result.data) {
-        return result.data
+        return result.data;
       }
       return result.message;
     } catch (error) {
@@ -24,7 +24,7 @@ export class Base {
       const result = response.data;
 
       if (result.data) {
-        return result.data
+        return result.data;
       }
       return result.message;
     } catch (error) {
