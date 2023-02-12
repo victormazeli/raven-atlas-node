@@ -3,7 +3,7 @@
 A Nodejs libary for working with raven atlas, for imformation take a look at raven atlas docs [click here](https://raven-atlas.readme.io)
 
 ## Getting Started
-#
+
 To start using this libary, signup on [raven atlas](https://dash.readme.com/to/raven-atlas/signup) to get an API key
 
 Run the command below to install this package
@@ -12,7 +12,6 @@ Run the command below to install this package
 
 ## How to use
 
-#
 Importing package using common js
 ```
 const { RavenAtlas } = require("raven-atlas-node");
