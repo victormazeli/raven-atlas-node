@@ -8,13 +8,13 @@ export class Base {
       const response = await this.axios.post(`${path}`, data);
       const result = response.data;
 
-      if (result.status === "fail") {
-        throw result.message
+      if (result.data) {
+        return result.data
       }
-      return result.data;
+      return result.message;
     } catch (error) {
       const err = error as AxiosError;
-      throw err.response ? err.response.data : "An error occurred";
+      return err.response ? err.response.data : "An error occurred";
     }
   }
 
@@ -23,13 +23,13 @@ export class Base {
       const response = await this.axios.get(`${path}`);
       const result = response.data;
 
-      if (result.status === "fail") {
-        throw result.message
+      if (result.data) {
+        return result.data
       }
-      return result.data;
+      return result.message;
     } catch (error) {
       const err = error as AxiosError;
-      throw err.response ? err.response.data : "An error occurred";
+      return err.response ? err.response.data : "An error occurred";
     }
   }
 }

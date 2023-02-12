@@ -23,9 +23,6 @@ export class RavenAtlas {
     } else {
       this.version = options.version;
     }
-    if (options.apiKey === "") {
-      throw Error("API Key can not be empty!");
-    }
     const axios = Axios.create({
       baseURL: this.url + `/${this.version}`,
       headers: {
