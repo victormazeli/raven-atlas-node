@@ -27,10 +27,15 @@ export function customAxios(baseUrl: string, apiKey: string, version: string): A
   };
 
   const errorHandler = (error: any) => {
-    if (error.response) {
+    if (error.response && error.response.data.message) {
       return Promise.reject(error.response.data.message);
+    } else if (error.cause) {
+      return Promise.reject(error.cause);
+    } else if (error.response) {
+      return Promise.reject(error.response.statusText);
+    } else {
+      return Promise.reject(error);
     }
-    return Promise.reject(error);
   };
 
   customAxiosInstance.interceptors.request.use(

@@ -1,8 +1,9 @@
 {
   "name": "raven-atlas-node",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "raven atlas node libary",
   "main": "dist/index.js",
+  "typings": "dist/index.d.ts",
   "scripts": {
     "test": "jest --config jestconfig.json",
     "format": "prettier --write \"src/**/*.ts\" \"dist/**/*.js\"",

@@ -3,16 +3,18 @@ import { Bill } from "./lib/bills";
 import { Collection } from "./lib/collections";
 import { Miscellaneous } from "./lib/misc";
 import { Transfer } from "./lib/transfers";
+import { Kyc } from "./lib/kyc";
+import { Transaction } from "./lib/transactions";
 
-export default class RavenAtlas {
+export class RavenAtlas {
   public url: string = "https://integrations.getravenbank.com";
   public bill: Bill;
   public card: string | undefined;
   public collection: Collection;
-  public transaction: string | undefined;
+  public transaction: Transaction;
   public transfer: Transfer;
   public misc: Miscellaneous;
-  public kyc: string | undefined;
+  public kyc: Kyc;
   private version: string | undefined;
   private apiKey: string | undefined;
 
@@ -30,5 +32,7 @@ export default class RavenAtlas {
     this.collection = new Collection(axios);
     this.misc = new Miscellaneous(axios);
     this.transfer = new Transfer(axios);
+    this.transaction = new Transaction(axios);
+    this.kyc = new Kyc(axios);
   }
 }
