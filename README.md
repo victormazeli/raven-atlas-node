@@ -5,6 +5,7 @@ A Nodejs libary for working with raven atlas, for more information take a look a
 
 ## Getting Started
 
+#
 To start using this libary, signup on [raven atlas](https://dash.readme.com/to/raven-atlas/signup) to get an API key
 
 Run the command below to install this package
@@ -13,6 +14,7 @@ Run the command below to install this package
 
 ## How to use
 
+#
 Importing package using common js
 ```
 const { RavenAtlas } = require("raven-atlas-node");
@@ -28,6 +30,7 @@ const { bill, kyc, misc, transaction } = new RavenAtlas({apiKey: "YOUR_API_KEY"}
 
 ```
 
+### Miscellenous
 ```
 try {
     const checkAccount = await misc.accountNumberLookUp({accountNumber: "3028422066", bank: "076"})
@@ -94,12 +97,14 @@ try {
     }
 
 ```
+
 ### Available Classes
 
 1. Bill
 2. Miscellenous
 3. Collection
 4. Transfer
+5. Kyc
 ### Todos                                                                                                                                                 
 
 1. Cards
