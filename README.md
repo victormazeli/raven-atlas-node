@@ -97,7 +97,7 @@ try {
 ```
 
 ## Resources
-#
+
 1. Bill
     - purchaseAirtime()
     - purchaseDataPlan()
