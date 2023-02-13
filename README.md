@@ -5,7 +5,7 @@ A Nodejs libary for working with raven atlas, for more information take a look a
 
 ## Getting Started
 
-To start using this libary, signup on [raven atlas](https://dash.readme.com/to/raven-atlas/signup) to get an API key
+To start using this libary, signup on [raven atlas](https://atlas.getravenbank.com/register) to get an API key
 
 Run the command below to install this package
 
@@ -96,14 +96,48 @@ try {
 
 ```
 
-### Available Classes
-
+## Resources
+#
 1. Bill
+    - purchaseAirtime()
+    - purchaseDataPlan()
+    - purchaseCablePlan()
+    - purchaseElectricity()
+    - validateCableAccount()
+    - validateMeterNumber()
+    - getAirtimeRecord()
+    - getAirtimeRecords()
+    - getDataPlans()
+    - getDataPlanRecords()
+    - getCableProviders()
+    - getElectricityDiscos()
+    - getElectricityRecords()
+    - validateBetAccount()
+    - rechargeBettingAccount()
+    - getBettingPlatforms()
+    - getBettingRecords()
+    
 2. Miscellenous
+    - accountNumberLookUp()
+    - getBankList()
+    - getWalletBalance()
+    - updateWebhookDetails()
+    
 3. Collection
+    - generateCollectionAccount()
+    
 4. Transfer
+    - initiateTransfer()
+    - getSingleTransfer()
+    
 5. Kyc
-### Todos                                                                                                                                                 
+    - verifyBvn()
+    - verifyPvc()
+    - verifyPassport()
+    - verifyDriverLicence()
+    
+#
+## Todos                                                                                                                                                 
 
 1. Cards
 
