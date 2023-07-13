@@ -1,31 +1,34 @@
-name: "Increment version"
+name: Update Package Version
 
 on:
   push:
     branches:
-      - "main"
+      - main
 
 jobs:
-  bump-version:
-    name: "Bump Version on master"
+  update_version:
     runs-on: ubuntu-latest
 
     steps:
-      - name: "Checkout source code"
-        uses: "actions/checkout@v3"
-        with:
-          ref: ${{ github.ref }}
-      - name: "cat package.json"
-        run: cat ./package.json
-      - name: "Setup Node.js"
-        uses: "actions/setup-node@v3"
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
         with:
           node-version: 16
-      - name: "Automated Version Bump"
-        uses: "phips28/gh-action-bump-version@master"
-        with:
-          tag-prefix: ''
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      - name: "cat package.json"
-        run: cat ./package.json
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Update package version
+        run: |
+          npm version patch --no-git-tag-version
+          echo "New package version: $npm_package_version"
+
+      - name: Commit and push changes
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git commit -am "Update package version to $npm_package_version"
+          git push
