@@ -1,4 +1,4 @@
-name: Update Package Version
+name: Update package.json version
 
 on:
   push:
@@ -6,29 +6,30 @@ on:
       - main
 
 jobs:
-  update_version:
+  update-version:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
+      - name: Checkout repository
+        uses: actions/checkout@v2
 
-      - name: Set up Node.js
-        uses: actions/setup-node@v3
-        with:
-          node-version: 16
-
-      - name: Install dependencies
-        run: npm ci
-
-      - name: Update package version
+      - name: Update version number
         run: |
-          npm version patch --no-git-tag-version
-          echo "New package version: $npm_package_version"
+          # Extract the current version from package.json
+          CURRENT_VERSION=$(jq -r '.version' package.json)
+
+          # Generate a new version number by incrementing the patch version
+          NEW_VERSION=$(echo $CURRENT_VERSION | awk -F. '{print $1"."$2"."$3+1}')
+
+          # Update the version in package.json
+          jq --arg new_version "$NEW_VERSION" '.version = $new_version' package.json > package.json.tmp
+          mv package.json.tmp package.json
 
       - name: Commit and push changes
         run: |
-          git config --local user.email "victor.vic.mazeli@gmail.com"
-          git config --local user.name "victormazeli"
-          git commit -am "Update package version to $npm_package_version"
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+
+          git add package.json
+          git commit -m "Update version number"
           git push
