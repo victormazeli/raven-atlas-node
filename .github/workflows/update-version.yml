@@ -1,0 +1,24 @@
+name: Update Version
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  update-version:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check Out Repository
+        uses: actions/checkout@v2
+
+      - name: Set Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: 14
+
+      - name: Update Version
+        run: |
+          npm version patch
+          git push --follow-tags
