@@ -28,7 +28,7 @@ jobs:
 
       - name: Commit and push changes
         run: |
-          git config --local user.email "action@github.com"
-          git config --local user.name "GitHub Action"
+          git config --local user.email "victor.vic.mazeli@gmail.com"
+          git config --local user.name "victormazeli"
           git commit -am "Update package version to $npm_package_version"
           git push
