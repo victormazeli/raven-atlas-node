@@ -24,7 +24,7 @@ jobs:
           git config --global user.name "victor mazeli"
           git config --global user.email "victor.vic.mazeli@gmail.com"
           git config --global credential.helper store
-          git remote set-url origin https://username:${{ secrets.GITHUB_TOKEN }}@github.com/victormazeli/raven-atlas-node.git
+          git remote set-url origin https://username:${{ secrets.PAT_TOKEN }}@github.com/victormazeli/raven-atlas-node.git
 
       - name: Update Version
         run: |
