@@ -3,7 +3,7 @@ name: Build, SemVer - MASTER BRANCH
 on:
   push:
     branches:
-      - master
+      - main
     paths-ignore:
       - 'package.json'
       - 'CHANGELOG.md'
