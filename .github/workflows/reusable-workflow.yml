@@ -1,0 +1,88 @@
+
+name: Build and Push Artifact
+
+on:
+   workflow_call:
+    secrets:
+      REGISTRY_URL:
+        required: true  
+      GHB_TOKEN:
+        required: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+          token: ${{ secrets.GHB_TOKEN }}
+
+      - name: Cache node modules
+        uses: actions/cache@v3
+        with:
+            path: node_modules
+            key: cache-node-modules-${{ hashFiles('package-lock.json') }}-${{ github.sha }}
+
+      - name: Use Node.js
+        uses: actions/setup-node@v3
+        if: steps.cache.outputs.cache-hit != 'true'
+        with:
+          node-version: 16
+
+      - name: Install dependencies
+        if: steps.cache.outputs.cache-hit != 'true'
+        run: npm install 
+
+      - name: Conventional Changelog Action (Master)
+        if: ${{ (github.ref != 'refs/heads/main') && (github.ref == 'refs/heads/master') }}
+        id: changelog_master
+        uses: TriPSs/conventional-changelog-action@v3.15.0
+        with:
+          github-token: ${{ secrets.GHB_TOKEN }}
+          skip-on-empty: 'false'
+
+      - name: Build package
+        run: npm run build
+
+
+      - name: Create a GitHub Semantic release (Master)
+        if: ${{ (github.ref == 'refs/heads/master') && (steps.changelog_master.outputs.skipped == 'false') }}
+        uses: actions/create-release@v1.1.4
+        env:
+          GITHUB_TOKEN: ${{ secrets.GHB_TOKEN }}
+        with:
+          tag_name: ${{ steps.changelog_master.outputs.tag }}
+          release_name: ${{ steps.changelog_master.outputs.tag }}
+          body: ${{ steps.changelog_master.outputs.clean_changelog }}
+   
+
+  publish:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+        - name: Checkout code
+          uses: actions/checkout@v3
+          with:
+            fetch-depth: 0
+            token: ${{ secrets.GHB_TOKEN }}
+
+        - name: Cache node modules
+          uses: actions/cache@v3
+          with:
+            path: node_modules
+            key: cache-node-modules-${{ hashFiles('package-lock.json') }}-${{ github.sha }}
+
+        - name: Install Dependecies    
+          uses: actions/setup-node@v3
+          if: steps.cache.outputs.cache-hit != 'true'
+          with:
+            node-version: 16
+            registry-url: https://registry.npmjs.org/
+            
+        - run: npm install
+        - run: npm publish
+          env:
+           NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
