@@ -1,31 +1,31 @@
-name: Update Version
+# name: Update Version
 
-on:
-  push:
-    branches:
-      - main
+# on:
+#   push:
+#     branches:
+#       - main
 
-jobs:
-  update-version:
-    runs-on: ubuntu-latest
+# jobs:
+#   update-version:
+#     runs-on: ubuntu-latest
 
-    steps:
-      - name: Check Out Repository
-        uses: actions/checkout@v3
+#     steps:
+#       - name: Check Out Repository
+#         uses: actions/checkout@v3
 
-      - name: Set Node.js
-        uses: actions/setup-node@v3
-        with:
-          node-version: 16
-      - run: npm ci
+#       - name: Set Node.js
+#         uses: actions/setup-node@v3
+#         with:
+#           node-version: 16
+#       - run: npm ci
       
-      - name: Configure Git credentials
-        run: |
-          git config --global user.name "victor mazeli"
-          git config --global user.email "victor.vic.mazeli@gmail.com"
-          git config --global credential.helper store
-          git remote set-url origin https://${{ secrets.PAT_TOKEN }}@github.com/victormazeli/raven-atlas-node.git
-      - name: Update Version
-        run: |
-          npm version patch
-          git push --follow-tags
+#       - name: Configure Git credentials
+#         run: |
+#           git config --global user.name "victor mazeli"
+#           git config --global user.email "victor.vic.mazeli@gmail.com"
+#           git config --global credential.helper store
+#           git remote set-url origin https://${{ secrets.PAT_TOKEN }}@github.com/victormazeli/raven-atlas-node.git
+#       - name: Update Version
+#         run: |
+#           npm version patch
+#           git push --follow-tags
