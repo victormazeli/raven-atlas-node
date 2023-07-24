@@ -1,0 +1,17 @@
+name: Build, SemVer - FEATURE BRANCH
+
+on:
+  pull_request:
+    branches:
+      - master
+
+  workflow_dispatch:
+
+jobs:
+  
+  build:
+      uses: ./.github/workflows/reusable-workflow.yml@main
+      secrets:
+        jfrog-token: ${{ secrets.ORG_JFROG_RW_TOKEN }}
+        GHB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        registry-url: ${{ secrets.REGISTRY_URL }}
