@@ -3,7 +3,7 @@ name: Build, SemVer - MASTER BRANCH
 on:
   push:
     branches:
-      - master
+      - main
     paths-ignore:
       - 'package.json'
       - 'CHANGELOG.md'
@@ -13,8 +13,6 @@ on:
 jobs:
   
   build:
-      uses: ./.github/workflows/reusable-workflow.yml@main
+      uses: ./.github/workflows/reusable-workflow.yml
       secrets:
-        jfrog-token: ${{ secrets.ORG_JFROG_RW_TOKEN }}
         GHB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        registry-url: ${{ secrets.REGISTRY_URL }}
