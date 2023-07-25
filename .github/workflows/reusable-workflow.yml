@@ -4,8 +4,6 @@ name: Build and Push Artifact
 on:
    workflow_call:
     secrets:
-      REGISTRY_URL:
-        required: true  
       GHB_TOKEN:
         required: true
 
