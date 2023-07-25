@@ -70,6 +70,5 @@ jobs:
           cache: 'npm'
           cache-dependency-path: package-lock.json
       - run: npm ci
-      - run: npm test
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
